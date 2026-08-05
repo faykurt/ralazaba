@@ -5,6 +5,8 @@ import { useHarcamalar } from "@/lib/useHarcamalar";
 import ExpenseCard from "@/components/ExpenseCard";
 import ExpenseFormModal from "@/components/ExpenseFormModal";
 import ConfirmDialog from "@/components/ConfirmDialog";
+import TotalBanner from "@/components/TotalBanner";
+import { AnchorIcon } from "@/components/icons";
 import type { Harcama, HarcamaGirdi } from "@/lib/types";
 
 export default function AnaSayfa() {
@@ -43,10 +45,7 @@ export default function AnaSayfa() {
 
   return (
     <div>
-      <div className="sticky top-0 z-10 -mx-4 mb-4 bg-navy px-4 py-4 text-kum shadow-md sm:mx-0 sm:rounded-b-2xl">
-        <p className="text-sm text-kum/70">Toplam Harcama</p>
-        <p className="text-3xl font-bold">{toplam.toLocaleString("tr-TR")} TL</p>
-      </div>
+      <TotalBanner toplam={toplam} />
 
       {error && (
         <p className="mb-4 rounded-lg bg-mercan/10 p-3 text-sm text-mercan">
@@ -62,10 +61,11 @@ export default function AnaSayfa() {
         </p>
       ) : (
         <ul className="space-y-3">
-          {harcamalar.map((h) => (
+          {harcamalar.map((h, i) => (
             <ExpenseCard
               key={h.id}
               harcama={h}
+              index={i}
               onDuzenle={() => duzenle(h)}
               onSil={() => setSilinecek(h)}
             />
@@ -76,9 +76,12 @@ export default function AnaSayfa() {
       <button
         onClick={yeniEkle}
         aria-label="Harcama ekle"
-        className="fixed right-6 bottom-6 flex h-16 w-16 items-center justify-center rounded-full bg-mercan text-3xl leading-none text-white shadow-lg active:scale-95"
+        className="fixed right-6 bottom-6 z-20 flex h-16 w-16 items-center justify-center rounded-full bg-turkuaz text-white shadow-lg active:scale-95"
       >
-        +
+        <AnchorIcon className="h-7 w-7" />
+        <span className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-mercan text-base leading-none font-bold text-white ring-2 ring-kum">
+          +
+        </span>
       </button>
 
       {formAcik && (

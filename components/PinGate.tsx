@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useSyncExternalStore, type FormEvent } from "react";
+import { SailboatIcon } from "./icons";
 
 const PIN = "1453";
 const STORAGE_KEY = "ralazaba_pin_ok";
@@ -47,8 +48,8 @@ export default function PinGate({ children }: { children: React.ReactNode }) {
           onSubmit={handleSubmit}
           className="w-full max-w-sm rounded-2xl bg-white p-8 text-center shadow-xl"
         >
-          <p className="mb-1 text-3xl">⛵</p>
-          <h1 className="mb-1 text-2xl font-bold text-navy">
+          <SailboatIcon className="mx-auto mb-1 h-10 w-10 text-navy" />
+          <h1 className="font-script mb-1 text-4xl text-navy">
             Ralazaba Tatilde
           </h1>
           <p className="mb-6 text-sm text-navy/60">

@@ -2,37 +2,42 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ChartIcon, SailboatIcon, TekneManzarasi, WaveIcon } from "./icons";
 
 const SEKMELER = [
-  { href: "/", etiket: "Ana Sayfa" },
-  { href: "/ozet", etiket: "Özet" },
+  { href: "/", etiket: "Ana Sayfa", Icon: WaveIcon },
+  { href: "/ozet", etiket: "Özet", Icon: ChartIcon },
 ] as const;
 
 export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <header className="bg-navy text-kum shadow-md">
-      <div className="mx-auto flex max-w-2xl items-center gap-2 px-4 pt-4 pb-1">
-        <span className="text-xl">⛵</span>
-        <span className="text-lg font-bold tracking-wide">
+    <header className="relative overflow-hidden">
+      <TekneManzarasi className="absolute inset-0 h-full w-full" />
+
+      <div className="relative mx-auto flex max-w-2xl items-center gap-2 px-4 pt-5 pb-2">
+        <SailboatIcon className="h-8 w-8 text-navy" />
+        <span className="font-script text-3xl leading-none text-navy">
           Ralazaba Tatilde
         </span>
       </div>
-      <nav className="mx-auto flex max-w-2xl px-4">
-        {SEKMELER.map((s) => {
-          const aktif = pathname === s.href;
+
+      <nav className="relative mx-auto flex max-w-2xl gap-2 px-4 pb-2">
+        {SEKMELER.map(({ href, etiket, Icon }) => {
+          const aktif = pathname === href;
           return (
             <Link
-              key={s.href}
-              href={s.href}
-              className={`flex-1 border-b-2 py-3 text-center text-sm font-semibold transition-colors ${
+              key={href}
+              href={href}
+              className={`flex flex-1 items-center justify-center gap-2 rounded-full border-b-[3px] py-2.5 text-sm font-semibold backdrop-blur-sm transition-colors ${
                 aktif
-                  ? "border-turkuaz text-turkuaz"
-                  : "border-transparent text-kum/60"
+                  ? "border-turkuaz bg-white/70 text-navy"
+                  : "border-transparent bg-white/40 text-navy/60"
               }`}
             >
-              {s.etiket}
+              <Icon className="h-4 w-4" />
+              {etiket}
             </Link>
           );
         })}

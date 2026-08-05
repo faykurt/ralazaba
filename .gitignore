@@ -39,6 +39,9 @@ yarn-error.log*
 # local dev tooling (makineye özel)
 .claude/
 
+# bu projeyle ilgisiz, yanlışlıkla bu klasörde oluşmuş ayrı bir repo
+/Faykurt Turizm/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

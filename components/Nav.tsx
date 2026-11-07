@@ -21,6 +21,12 @@ export default function Nav() {
         <span className="font-script text-3xl leading-none text-navy">
           Ralazaba Tatilde
         </span>
+        <Link
+          href="/admin"
+          className="ml-auto rounded-full bg-white/60 px-3 py-1 text-xs font-semibold text-navy/70 backdrop-blur-sm"
+        >
+          Admin
+        </Link>
       </div>
 
       <nav className="relative mx-auto flex max-w-2xl gap-2 px-4 pb-2">
